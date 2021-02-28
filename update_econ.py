@@ -68,7 +68,7 @@ def scrap_eco_data(startdate,rundate):
     driver = webdriver.Chrome(executable_path=setting['file location']['chromedriver'], chrome_options=chrome_options) #Establish a Chrome driver
     driver.get("https://www.investing.com/economic-calendar/") #Access the designated webpage using driver
 
-
+    print(driver.title)
     # current_date=datetime.datetime.now().date()
     # rundate= (current_date-datetime.timedelta(days=1) if current_date.weekday()!=0 else current_date-datetime.timedelta(days=3)).strftime("%m/%d/%Y")
 
@@ -237,7 +237,10 @@ def scrap_eco_data(startdate,rundate):
         time.sleep(3)
         if counter >= 10:
             raise Exception("Soup unable to find start date and end date in HTML source code. Please debug")
-
+    
+    # Close brower driver and close virtual display. 
+    driver.quit()
+    display.stop()
     # Filters to extract data - use regular expression to find all rows with eventRowID_XXX
 
     table_soup = full_soup.findAll('tr', id = re.compile('^eventRowId'))
