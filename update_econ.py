@@ -19,6 +19,7 @@ import os
 import mysql.connector
 from mysql.connector.constants import ClientFlag
 from configparser import ConfigParser
+from pyvirtualdisplay import Display # This is to deal with virtual machine not having an actual display
 
 #change cwd to script directory and read config file
 os.chdir(os.path.dirname(sys.argv[0]))
@@ -58,7 +59,12 @@ def scrap_eco_data(startdate,rundate):
     chrome_options.add_argument("--disable-gpu") 
     chrome_options.add_argument("start-maximized") 
     chrome_options.add_argument("disable-infobars")
-   
+    
+    # Start the virtual display
+    display = Display(visible=0, size=(800, 600))
+    display.start()
+    
+    # Start driver on the virtual display. 
     driver = webdriver.Chrome(executable_path=setting['file location']['chromedriver'], chrome_options=chrome_options) #Establish a Chrome driver
     driver.get("https://www.investing.com/economic-calendar/") #Access the designated webpage using driver
 
