@@ -62,7 +62,6 @@ def scrap_eco_data(startdate,rundate):
     
     # Start the virtual display
     display = Display(visible=0, size=(800, 600))
-    display.stop()
     display.start()
     
     # Start driver on the virtual display. 
