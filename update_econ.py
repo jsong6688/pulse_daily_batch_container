@@ -47,6 +47,18 @@ def scrap_eco_data(startdate,rundate):
     options = Options()
     options.add_argument("--disable-notifications")
     options.add_argument("--start_maximized")
+    
+    # 20210228 - Added based on Stackoverflow to resolve non-starter issue on virtual machine
+    # URL https://stackoverflow.com/questions/56637973/how-to-fix-selenium-devtoolsactiveport-file-doesnt-exist-exception-in-python
+    options.add_argument("--no-sandbox") 
+    options.add_argument("--disable-setuid-sandbox") 
+    options.add_argument("--remote-debugging-port=9222") 
+    options.add_argument("--disable-dev-shm-using") 
+    options.add_argument("--disable-extensions") 
+    options.add_argument("--disable-gpu") 
+    options.add_argument("start-maximized") 
+    options.add_argument("disable-infobars")
+   
     driver = webdriver.Chrome(setting['file location']['chromedriver']) #Establish a Chrome driver
     driver.get("https://www.investing.com/economic-calendar/") #Access the designated webpage using driver
 
