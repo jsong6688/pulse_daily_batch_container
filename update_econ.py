@@ -59,7 +59,7 @@ def scrap_eco_data(startdate,rundate):
     options.add_argument("start-maximized") 
     options.add_argument("disable-infobars")
    
-    driver = webdriver.Chrome(setting['file location']['chromedriver']) #Establish a Chrome driver
+    driver = webdriver.Chrome(setting['file location']['chromedriver'], chrome_options=options) #Establish a Chrome driver
     driver.get("https://www.investing.com/economic-calendar/") #Access the designated webpage using driver
 
 
