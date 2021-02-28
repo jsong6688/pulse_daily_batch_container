@@ -5,7 +5,7 @@
 #########################################################################
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -44,22 +44,22 @@ cursor_cloud = conn_cloud.cursor()
 #reset #Clear all vars - this command technically reset only works in Jupyter / ipython...
 
 def scrap_eco_data(startdate,rundate):
-    options = Options()
-    options.add_argument("--disable-notifications")
-    options.add_argument("--start_maximized")
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--disable-notifications")
+    chrome_options.add_argument("--start_maximized")
     
     # 20210228 - Added based on Stackoverflow to resolve non-starter issue on virtual machine
     # URL https://stackoverflow.com/questions/56637973/how-to-fix-selenium-devtoolsactiveport-file-doesnt-exist-exception-in-python
-    options.add_argument("--no-sandbox") 
-    options.add_argument("--disable-setuid-sandbox") 
-    options.add_argument("--remote-debugging-port=9222") 
-    options.add_argument("--disable-dev-shm-using") 
-    options.add_argument("--disable-extensions") 
-    options.add_argument("--disable-gpu") 
-    options.add_argument("start-maximized") 
-    options.add_argument("disable-infobars")
+    chrome_options.add_argument("--no-sandbox") 
+    chrome_options.add_argument("--disable-setuid-sandbox") 
+    chrome_options.add_argument("--remote-debugging-port=9222") 
+    chrome_options.add_argument("--disable-dev-shm-using") 
+    chrome_options.add_argument("--disable-extensions") 
+    chrome_options.add_argument("--disable-gpu") 
+    chrome_options.add_argument("start-maximized") 
+    chrome_options.add_argument("disable-infobars")
    
-    driver = webdriver.Chrome(setting['file location']['chromedriver'], chrome_options=options) #Establish a Chrome driver
+    driver = webdriver.Chrome(setting['file location']['chromedriver'], chrome_options=chrome_options) #Establish a Chrome driver
     driver.get("https://www.investing.com/economic-calendar/") #Access the designated webpage using driver
 
 
