@@ -87,13 +87,13 @@ def scrap_eco_data(startdate,rundate):
     ##########################################################################
 
     # Import current filter settings (Set locally)
-    filter_map = pd.read_excel(io = settings["Mapping_path"] + "\FilterMapping.xlsx", 
+    filter_map = pd.read_excel(io = settings["Mapping_path"] + "/FilterMapping.xlsx", 
         engine="openpyxl", sheet_name = "current") #Read current mapping
 
     # First deal with country mapping - generate new mapping if out of date - funcion embedded in this script
     if settings["Update_Cty_Map"] == True:
         get_country_mapping(settings["Mapping_path"]) #If updating then run code to designated path
-    country_map = pd.read_csv(settings["Mapping_path"] + "\CountryMapping.csv") #Read country map
+    country_map = pd.read_csv(settings["Mapping_path"] + "/CountryMapping.csv") #Read country map
 
     # Generate 'Country'' code mapping via left join
     country_filter  = pd.merge(filter_map.loc[:, 'Country'].to_frame(name = "Country_Name"), country_map,  on = "Country_Name")
