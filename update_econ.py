@@ -312,7 +312,7 @@ def scrap_eco_data(startdate,rundate):
 
 
     #Read from mapping file
-    data_list_mapping = pd.DataFrame(pd.read_excel(io = settings["Mapping_path"] + "\data_list_invest_dot_com.xlsx", 
+    data_list_mapping = pd.DataFrame(pd.read_excel(io = settings["Mapping_path"] + "/data_list_invest_dot_com.xlsx", 
                     sheet_name = "data_list", engine="openpyxl",))
     #Create formatted data as new columns
     formatted_df=table_df[table_df['Release_Time']!='N/A']
