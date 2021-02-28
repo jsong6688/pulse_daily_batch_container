@@ -335,6 +335,8 @@ class Pulse:
         # Use URLIB to convert delimeters for sql alchmey engine
         # params = self.urllib.parse.quote_plus(**self.conn_str)
         engine = self.sqlalchemy.create_engine(con_str,connect_args=ssl_args)
+        engine.connect() # Added to catch engine connection error
+        print(table) # Check table has default value or input
 
         # Write to SQL table
         self.agg_index_cont_tbl.to_sql(name=table, con=engine, if_exists='replace', index=False)
