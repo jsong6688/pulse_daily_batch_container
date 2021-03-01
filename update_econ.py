@@ -69,7 +69,7 @@ def scrap_eco_data(startdate,rundate):
     ##########################################################################
 
     # Import current filter settings (Set locally)
-    filter_map = pd.read_excel(io = settings["Mapping_path"] + "\FilterMapping.xlsx", 
+    filter_map = pd.read_excel(io = settings["Mapping_path"] + "\FilterMapping.xlsx",
         engine="openpyxl", sheet_name = "current") #Read current mapping
 
     # First deal with country mapping - generate new mapping if out of date - funcion embedded in this script
@@ -291,7 +291,7 @@ def scrap_eco_data(startdate,rundate):
 
 
     #Read from mapping file
-    data_list_mapping = pd.DataFrame(pd.read_excel(io = settings["Mapping_path"] + "\data_list_invest_dot_com.xlsx", 
+    data_list_mapping = pd.DataFrame(pd.read_excel(io = settings["Mapping_path"] + "\data_list_invest_dot_com.xlsx",
                     sheet_name = "data_list", engine="openpyxl",))
     #Create formatted data as new columns
     formatted_df=table_df[table_df['Release_Time']!='N/A']
@@ -315,8 +315,8 @@ def scrap_eco_data(startdate,rundate):
     min_date=min(upload_df.Release_Time_Upload).strftime("%Y-%m-%d")
     max_date=max(upload_df.Release_Time_Upload).strftime("%Y-%m-%d")
 
-    sqlstr = """Delete from eco_data where effective_date >= %s
-             and effective_date<=%s """
+    sqlstr = """Delete from eco_data where release_date >= %s
+             and release_date<=%s """
     cursor_cloud.execute(sqlstr, [min_date,max_date])
     conn_cloud.commit()
 
