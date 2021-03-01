@@ -336,8 +336,8 @@ def scrap_eco_data(startdate,rundate):
     min_date=min(upload_df.Release_Time_Upload).strftime("%Y-%m-%d")
     max_date=max(upload_df.Release_Time_Upload).strftime("%Y-%m-%d")
 
-    sqlstr = """Delete from eco_data where effective_date >= %s
-             and effective_date<=%s """
+    sqlstr = """Delete from eco_data where >= %s
+             and <=%s """
     cursor_cloud.execute(sqlstr, [min_date,max_date])
     conn_cloud.commit()
 
