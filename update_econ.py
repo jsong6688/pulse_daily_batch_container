@@ -306,7 +306,7 @@ def scrap_eco_data(startdate,rundate):
     mapped_df.loc[:,'Actual_Upload']=mapped_df['Actual_Upload'] * mapped_df['Scaling']
 
     #Create df for upload
-    upload_df=mapped_df.loc[:,['data_name','bbg_code','country','sector','freq','Effective_Date_Upload','Release_Time_Upload','Actual_Upload','score_direction']]
+    upload_df=mapped_df.loc[:,['data_name','bbg_code','country','sector','freq','Effective_Date_Upload','Release_Time_Upload','Actual_Upload','score_direction','Unit']]
     #upload_df['Release_Time_Upload'] = pd.to_datetime(upload_df['Release_Time_Upload'])
 
 
@@ -321,10 +321,11 @@ def scrap_eco_data(startdate,rundate):
     conn_cloud.commit()
 
     #upload into google cloud
-    sql = "INSERT INTO eco_data (data_name,bbg_code,country,sector,freq,effective_date,release_date,value,score_direction) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    sql = "INSERT INTO eco_data (data_name,bbg_code,country,sector,freq,effective_date,release_date,value,score_direction,Unit) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     cursor_cloud.executemany(sql, upload_df.values.tolist())
 
     conn_cloud.commit()
+
 
     print('Data Uploaded!')
 

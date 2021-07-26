@@ -23,8 +23,8 @@ config = {
 }
 
 # This is for writting Pulse score to DB using SQLAlchmy engine for Pandas
-con_str = "mysql+pymysql://{}:{}@{}/{}".format(setting['db config']['user'], 
-            setting['db config']['password'], setting['db config']['host'], 
+con_str = "mysql+pymysql://{}:{}@{}/{}".format(setting['db config']['user'],
+            setting['db config']['password'], setting['db config']['host'],
             setting['db config']['database']) # Connection string for sql alchmy
 ssl_args = {'ssl':{'cert': setting['ssl location']['ssl_cert'],
                             'key': setting['ssl location']['ssl_key'],

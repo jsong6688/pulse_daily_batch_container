@@ -281,9 +281,9 @@ class Pulse:
 
         # Write to agg index table for the single currency
         if overwrite or (type(self.agg_index_cont_tbl) == list):
-            self.agg_index_cont_tbl = self.index_tbl[['release_date', 'country', 'data_name', 'sector', 'reading', 'release_flag', 'pulse_cont', 'pulse_cont_delta']]
+            self.agg_index_cont_tbl = self.index_tbl[['release_date', 'country', 'data_name', 'sector', 'reading', 'release_flag', 'pulse_cont', 'pulse_cont_delta','unit']]
         else:
-            new_tbl = self.index_tbl[['release_date', 'country', 'data_name', 'sector', 'reading', 'release_flag', 'pulse_cont', 'pulse_cont_delta']]
+            new_tbl = self.index_tbl[['release_date', 'country', 'data_name', 'sector', 'reading', 'release_flag', 'pulse_cont', 'pulse_cont_delta','unit']]
             self.agg_index_cont_tbl = self.pd.concat([self.agg_index_cont_tbl, new_tbl], ignore_index = True) # Update by concat
 
     def generate_idx_all_ccy(self, con_str:str, ssl_args:dict, table:str='pulse_score', plot:bool=False):
