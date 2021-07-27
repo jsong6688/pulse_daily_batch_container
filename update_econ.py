@@ -22,7 +22,7 @@ from configparser import ConfigParser
 from pyvirtualdisplay import Display # This is to deal with virtual machine not having an actual display
 
 #change cwd to script directory and read config file
-os.chdir(os.path.dirname(sys.argv[0]))
+# os.chdir(os.path.dirname(sys.argv[0]))
 setting=ConfigParser()
 setting.read('setting.ini')
 
